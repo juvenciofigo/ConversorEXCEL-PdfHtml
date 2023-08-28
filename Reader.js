@@ -1,17 +1,18 @@
 const fs = require("fs");
-
+const util = require("util");
 
 class Reader {
-    Read(filepath) {
-        fs.readFile(filepath, "utf8", (err, data) => {
-            if (err) {
-                console.log("erro nao leitura");
-            }else{
-                console.log(data)
-            }
-        });
+    constructor() {
+        this.reader = util.promisify(fs.readFile(filepath));
+    }
+
+    async Read(filepath) {
+        try {
+            return await this.reader(filepath, "utf8");
+        } catch (err) {
+            return undefined;
+        }
     }
 }
 
-
-module.exports = Reader
+module.exports = Reader;
