@@ -3,7 +3,7 @@ const util = require("util");
 
 class Reader {
     constructor() {
-        this.reader = util.promisify(fs.readFile(filepath));
+        this.reader = util.promisify(fs.readFile);
     }
 
     async Read(filepath) {
