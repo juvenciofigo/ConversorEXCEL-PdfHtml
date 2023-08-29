@@ -1,8 +1,10 @@
-var Reader = require("./Reader");
-var Processor = require("./Processor");
-var Table = require("./Table");
-var HtmlParser = require("./HtmlParser");
+const Reader = require("./Reader");
+const Processor = require("./Processor");
+const Table = require("./Table");
+const HtmlParser = require("./HtmlParser");
+const PDFWhiter = require("./PDFWhiter");
 const Writer = require("./Writer");
+
 var escritor = new Writer();
 var reader = new Reader();
 
@@ -23,8 +25,9 @@ async function main() {
     const currentMillSeconds = currentSeconds / 1000;
     const currentMillSecondss = currentMillSeconds.toString().replace(".", "");
 
-    console.log(currentMillSecondss);
     escritor.Write(`novo ${currentYear}${currentMonth}${currentDay}${currentHours}${currentMinutes}${currentSeconds}${currentMillSecondss}.html`, html);
+    
+    PDFWhiter.WritePDF()
 }
 
 main();
